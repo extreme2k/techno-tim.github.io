@@ -157,6 +157,591 @@ At this point it is less about live status and more about organization. I like t
 
 It has effectively become my launch point for the rest of the services in my homelab.
 
+Since I showed Homepage in the video, here is a redacted version of the config I am using. I keep URLs, API keys, and host-specific values in environment variables so I can reuse the same config without hardcoding secrets.
+
+#### `settings.yaml`
+
+{% raw %}
+
+```yaml
+---
+title: Techno Tim Homepage
+
+background:
+  image: https://cdnb.artstation.com/p/assets/images/images/006/897/659/large/mikael-gustafsson-wallpaper-mikael-gustafsson.jpg
+  blur: md # sm, md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  saturate: 100 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 100 # 0-100
+
+theme: dark
+
+color: slate
+
+useEqualHeights: true
+
+disableCollapse: true
+
+target: _blank
+
+layout:
+  Hypervisor:
+    header: true
+    style: row
+    columns: 6
+  DNS:
+    header: true
+    style: row
+    columns: 6
+  Network:
+    header: true
+    style: row
+    columns: 6
+  Containers:
+    header: true
+    style: row
+    columns: 6
+  Monitoring:
+    header: true
+    style: row
+    columns: 6
+  Remote Access:
+    header: true
+    style: row
+    columns: 7
+  Storage:
+    header: true
+    style: row
+    columns: 6
+  Media:
+    header: true
+    style: row
+    columns: 6
+  Energy:
+    header: true
+    style: row
+    columns: 6
+  Home Automation:
+    header: true
+    style: row
+    columns: 6
+  AI:
+    header: true
+    style: row
+    columns: 6
+  Documents:
+    header: true
+    style: row
+    columns: 6
+  Tools:
+    header: true
+    style: row
+    columns: 6
+  Database:
+    header: true
+    style: row
+    columns: 6
+  Other:
+    header: true
+    style: row
+    columns: 6
+```
+
+{% endraw %}
+
+#### `services.yaml`
+
+{% raw %}
+
+```yaml
+---
+- Hypervisor:
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
+    description: pve1
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
+    description: pve2
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
+    description: pve3
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_MPLS_URL}}"
+    description: pve1-mpls
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_MPLS_URL}}"
+    description: pve2-mpls
+  - Proxmox:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PROXMOX_MPLS_URL}}"
+    description: pve3-mpls
+  - PBS:
+    icon: proxmox.svg
+    href: "{{HOMEPAGE_VAR_PBS_URL}}"
+    description: backup server
+
+- DNS:
+  - pihole1:
+    icon: pi-hole.svg
+    href: "{{HOMEPAGE_VAR_PIHOLE_URL_1}}"
+    description: pihole1
+  - pihole2:
+    icon: pi-hole.svg
+    href: "{{HOMEPAGE_VAR_PIHOLE_URL_2}}"
+    description: pihole2
+  - pihole3:
+    icon: pi-hole.svg
+    href: "{{HOMEPAGE_VAR_PIHOLE_URL_3}}"
+    description: pihole3
+  - dns01:
+    icon: pi-hole.svg
+    href: "{{HOMEPAGE_VAR_PIHOLE_URL_4}}"
+    description: dns01
+  - dns02:
+    icon: pi-hole.svg
+    href: "{{HOMEPAGE_VAR_PIHOLE_URL_5}}"
+    description: dns02
+
+- Network:
+  - UniFi:
+    icon: unifi-controller.png
+    href: "{{HOMEPAGE_VAR_UNIFI_NETWORK_URL}}"
+    description: network
+  - Traefik:
+    icon: traefik-proxy.svg
+    href: "{{HOMEPAGE_VAR_TRAEFIK_URL}}"
+    description: reverse proxy
+  - Uptime Kuma:
+    icon: uptime-kuma.svg
+    href: "{{HOMEPAGE_VAR_UPTIME_KUMA_URL}}"
+    description: internal
+  - Uptime Robot:
+    icon: uptimerobot.svg
+    href: "{{HOMEPAGE_VAR_UPTIME_ROBOT_URL}}"
+    description: external
+  - OpenSpeedTest:
+    icon: openspeedtest.svg
+    href: "{{HOMEPAGE_VAR_OPENSPEEDTEST_URL}}"
+    description: speed test
+
+- Containers:
+  - Rancher:
+    icon: rancher.svg
+    href: "{{HOMEPAGE_VAR_RANCHER_URL}}"
+    description: k8s
+  - Longhorn:
+    icon: longhorn.svg
+    href: "{{HOMEPAGE_VAR_LONGHORN_URL}}"
+    description: k8s storage
+  - Dozzle:
+    icon: dozzle.svg
+    href: "{{HOMEPAGE_VAR_DOZZLE_URL}}"
+    description: container logs
+
+- Monitoring:
+  - Grafana:
+    icon: grafana.svg
+    href: "{{HOMEPAGE_VAR_GRAFANA_URL}}"
+    description: dashboards
+  - Prometheus:
+    icon: prometheus.svg
+    href: "{{HOMEPAGE_VAR_PROMETHEUS_URL}}"
+    description: metrics
+  - Grafana Alloy:
+    icon: alloy.svg
+    href: "{{HOMEPAGE_VAR_ALLOY_URL}}"
+    description: log collector
+  - Scrutiny:
+    icon: scrutiny.svg
+    href: "{{HOMEPAGE_VAR_SCRUTINY_URL}}"
+    description: drive health
+  - Loki:
+    icon: loki.svg
+    href: "{{HOMEPAGE_VAR_LOKI_EXPLORE_URL}}"
+    description: log explorer
+
+- Remote Access:
+  - PiKVM:
+    icon: pikvm.svg
+    href: "{{HOMEPAGE_VAR_PIKVM_URL}}"
+    description: pikvm
+  - kvm-1:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_1_URL}}"
+    description: jetkvm
+  - kvm-2:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_2_URL}}"
+    description: jetkvm
+  - kvm-3:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_3_URL}}"
+    description: jetkvm
+  - kvm-4:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_4_URL}}"
+    description: jetkvm
+  - kvm-5:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_5_URL}}"
+    description: jetkvm
+  - kvm-6:
+    icon: jetkvm.svg
+    href: "{{HOMEPAGE_VAR_KVM_6_URL}}"
+    description: jetkvm
+  - IPMI:
+    icon: supermicro.svg
+    href: "{{HOMEPAGE_VAR_IPMI_1_URL}}"
+    description: storinator
+  - IPMI:
+    icon: supermicro.svg
+    href: "{{HOMEPAGE_VAR_IPMI_2_URL}}"
+    description: hl15
+  - Netboot.xyz:
+    icon: netbootxyz.svg
+    href: "{{HOMEPAGE_VAR_NETBOOT_URL}}"
+    description: network boot
+  - Code Server:
+    icon: vscode.svg
+    href: "{{HOMEPAGE_VAR_CODE_SERVER_URL}}"
+    description: browser ide
+
+- Storage:
+  - TrueNAS:
+    icon: truenas.svg
+    href: "{{HOMEPAGE_VAR_TRUENAS_URL}}"
+    description: scale
+  - MinIO:
+    icon: minio.svg
+    href: "{{HOMEPAGE_VAR_MINIO_URL}}"
+    description: object storage
+  - Rackula:
+    icon: rackula.svg
+    href: "{{HOMEPAGE_VAR_RACKULA_URL}}"
+    description: rack diagram
+  - UNAS:
+    icon: unifi-drive.svg
+    href: "{{HOMEPAGE_VAR_UNAS_URL}}"
+    description: nas
+
+- Media:
+  - Plex:
+    icon: plex.svg
+    href: "{{HOMEPAGE_VAR_PLEX_URL}}"
+    description: media server
+  - Tautulli:
+    icon: tautulli.svg
+    href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}"
+    description: plex stats
+  - Immich:
+    icon: immich.svg
+    href: "{{HOMEPAGE_VAR_IMMICH_URL}}"
+    description: photo library
+  - Dispatcharr:
+    icon: dispatcharr.svg
+    href: "{{HOMEPAGE_VAR_DISPATCHARR_URL}}"
+    description: media dispatcher
+  - ErsatzTV:
+    icon: ersatztv.png
+    href: "{{HOMEPAGE_VAR_ERSATZTV_URL}}"
+    description: iptv server
+  - Handbrake:
+    icon: handbrake.svg
+    href: "{{HOMEPAGE_VAR_HANDBRAKE_URL}}"
+    description: video transcoder
+  - HDHomerun:
+    icon: hdhomerun.svg
+    href: "{{HOMEPAGE_VAR_HDHOMERUN_URL}}"
+    description: flex 4k
+
+- Energy:
+  - PeaNUT:
+    icon: peanut.svg
+    href: "{{HOMEPAGE_VAR_PEANUT_URL}}"
+    description: ups monitor
+  - Tripp Lite:
+    icon: "{{HOMEPAGE_VAR_TRIPP_LITE_ICON_URL}}"
+    href: "{{HOMEPAGE_VAR_UPS_1_URL}}"
+    description: 1500
+  - Eaton:
+    icon: "{{HOMEPAGE_VAR_EATON_ICON_URL}}"
+    href: "{{HOMEPAGE_VAR_UPS_2_URL}}"
+    description: 5p
+
+- Home Automation:
+  - Home Assistant:
+    icon: home-assistant.svg
+    href: "{{HOMEPAGE_VAR_HOME_ASSISTANT_URL}}"
+    description: home
+  - UniFi Protect:
+    icon: unifi-protect.png
+    href: "{{HOMEPAGE_VAR_UNIFI_PROTECT_URL}}"
+    description: cameras
+  - Scrypted:
+    icon: scrypted.png
+    href: "{{HOMEPAGE_VAR_SCRYPTED_URL}}"
+    description: camera mgmt
+  - Zigbee2MQTT:
+    icon: zigbee2mqtt.svg
+    href: "{{HOMEPAGE_VAR_ZIGBEE2MQTT_URL}}"
+    description: zigbee bridge
+  - SLZB-06M:
+    icon: smlight.png
+    href: "{{HOMEPAGE_VAR_SLZB06M_URL}}"
+    description: zigbee coordinator
+
+- AI:
+  - Open WebUI:
+    icon: open-webui.svg
+    href: "{{HOMEPAGE_VAR_OPEN_WEBUI_URL}}"
+    description: llm chat
+  - n8n:
+    icon: n8n.svg
+    href: "{{HOMEPAGE_VAR_N8N_URL}}"
+    description: workflow automation
+
+- Documents:
+  - Paperless:
+    icon: paperless.svg
+    href: "{{HOMEPAGE_VAR_PAPERLESS_URL}}"
+    description: document mgmt
+  - Paperless AI:
+    icon: paperless-ai.png
+    href: "{{HOMEPAGE_VAR_PAPERLESS_AI_URL}}"
+    description: ai document tagging
+  - Stirling PDF:
+    icon: stirling-pdf.svg
+    href: "{{HOMEPAGE_VAR_STIRLING_URL}}"
+    description: pdf tools
+
+- Tools:
+  - IT Tools:
+    icon: it-tools.svg
+    href: "{{HOMEPAGE_VAR_IT_TOOLS_URL}}"
+    description: developer utilities
+  - SearXNG:
+    icon: searxng.svg
+    href: "{{HOMEPAGE_VAR_SEARXNG_URL}}"
+    description: meta search engine
+  - Postiz:
+    icon: postiz.svg
+    href: "{{HOMEPAGE_VAR_POSTIZ_URL}}"
+    description: social scheduler
+  - Bambu Studio:
+    icon: "{{HOMEPAGE_VAR_BAMBUSTUDIO_ICON_URL}}"
+    href: "{{HOMEPAGE_VAR_BAMBUSTUDIO_URL}}"
+    description: 3d slicer
+
+- Database:
+  - pgAdmin:
+    icon: pgadmin.svg
+    href: "{{HOMEPAGE_VAR_PGADMIN_URL}}"
+    description: postgres admin
+  - phpMyAdmin:
+    icon: phpmyadmin.svg
+    href: "{{HOMEPAGE_VAR_PHPMYADMIN_URL}}"
+    description: mariadb admin
+  - DBgate:
+    icon: "{{HOMEPAGE_VAR_DBGATE_ICON_URL}}"
+    href: "{{HOMEPAGE_VAR_DBGATE_URL}}"
+    description: multi-db client
+  - Adminer:
+    icon: adminer.svg
+    href: "{{HOMEPAGE_VAR_ADMINER_URL}}"
+    description: lightweight db client
+  - Databasus:
+    icon: databasus.svg
+    href: "{{HOMEPAGE_VAR_DATABASUS_URL}}"
+    description: db admin
+
+- Other:
+  - GitLab:
+    icon: gitlab.svg
+    href: "{{HOMEPAGE_VAR_GITLAB_URL}}"
+    description: source code
+  - GitHub:
+    icon: github.svg
+    href: "{{HOMEPAGE_VAR_GITHUB_URL}}"
+    description: source code
+  - Shlink:
+    icon: shlink.svg
+    href: "{{HOMEPAGE_VAR_SHLINK_URL}}"
+    description: url shortener
+```
+
+{% endraw %}
+
+#### `.env` example
+
+{% raw %}
+
+```console
+TZ=America/Chicago
+HOMEPAGE_ALLOWED_HOSTS=
+
+# Pi-hole v6 app passwords — generate in each Pi-hole > Settings > API > App passwords
+HOMEPAGE_VAR_PIHOLE_API_KEY_1=
+HOMEPAGE_VAR_PIHOLE_API_KEY_2=
+HOMEPAGE_VAR_PIHOLE_API_KEY_3=
+HOMEPAGE_VAR_PIHOLE_API_KEY_4=
+HOMEPAGE_VAR_PIHOLE_API_KEY_5=
+HOMEPAGE_VAR_PIHOLE_API_URL_1=
+HOMEPAGE_VAR_PIHOLE_API_URL_2=
+HOMEPAGE_VAR_PIHOLE_API_URL_3=
+HOMEPAGE_VAR_PIHOLE_API_URL_4=
+HOMEPAGE_VAR_PIHOLE_API_URL_5=
+HOMEPAGE_VAR_PIHOLE_URL_1=
+HOMEPAGE_VAR_PIHOLE_URL_2=
+HOMEPAGE_VAR_PIHOLE_URL_3=
+HOMEPAGE_VAR_PIHOLE_URL_4=
+HOMEPAGE_VAR_PIHOLE_URL_5=
+HOMEPAGE_VAR_PIHOLE_HOST_1=
+HOMEPAGE_VAR_PIHOLE_HOST_2=
+HOMEPAGE_VAR_PIHOLE_HOST_3=
+HOMEPAGE_VAR_PIHOLE_HOST_4=
+HOMEPAGE_VAR_PIHOLE_HOST_5=
+
+# Hypervisor
+HOMEPAGE_VAR_PROXMOX_URL=
+HOMEPAGE_VAR_PROXMOX_MPLS_URL=
+HOMEPAGE_VAR_PROXMOX_USER=
+HOMEPAGE_VAR_PROXMOX_MPLS_USER=
+HOMEPAGE_VAR_PROXMOX_API_KEY=
+HOMEPAGE_VAR_PROXMOX_MPLS_API_KEY=
+HOMEPAGE_VAR_PBS_URL=
+HOMEPAGE_VAR_PVE_HOST_1=
+HOMEPAGE_VAR_PVE_HOST_2=
+HOMEPAGE_VAR_PVE_HOST_3=
+HOMEPAGE_VAR_PVE_HOST_4=
+HOMEPAGE_VAR_PVE_MPLS_HOST_1=
+HOMEPAGE_VAR_PVE_MPLS_HOST_2=
+HOMEPAGE_VAR_PVE_MPLS_HOST_3=
+
+# Network
+HOMEPAGE_VAR_UNIFI_NETWORK_URL=
+HOMEPAGE_VAR_UNIFI_NETWORK_API_URL=
+HOMEPAGE_VAR_UNIFI_NETWORK_USERNAME=
+HOMEPAGE_VAR_UNIFI_NETWORK_PASSWORD=
+HOMEPAGE_VAR_UNIFI_PROTECT_URL=
+HOMEPAGE_VAR_TRAEFIK_URL=
+HOMEPAGE_VAR_TRAEFIK_USERNAME=
+HOMEPAGE_VAR_TRAEFIK_PASSWORD=
+HOMEPAGE_VAR_UPTIME_KUMA_URL=
+HOMEPAGE_VAR_UPTIME_ROBOT_URL=
+HOMEPAGE_VAR_UPTIME_ROBOT_API_KEY=
+HOMEPAGE_VAR_OPENSPEEDTEST_URL=
+HOMEPAGE_VAR_UDM_HOST=
+HOMEPAGE_VAR_UNVR=
+
+# Containers
+HOMEPAGE_VAR_RANCHER_URL=
+HOMEPAGE_VAR_LONGHORN_URL=
+HOMEPAGE_VAR_DOZZLE_URL=
+
+# Monitoring
+HOMEPAGE_VAR_GRAFANA_URL=
+HOMEPAGE_VAR_GRAFANA_USERNAME=
+HOMEPAGE_VAR_GRAFANA_PASSWORD=
+HOMEPAGE_VAR_PROMETHEUS_URL=
+HOMEPAGE_VAR_ALLOY_URL=
+HOMEPAGE_VAR_LOKI_URL=
+HOMEPAGE_VAR_LOKI_EXPLORE_URL=
+HOMEPAGE_VAR_SCRUTINY_URL=
+
+# Remote Access
+HOMEPAGE_VAR_PIKVM_URL=
+HOMEPAGE_VAR_PIKVM_HOST=
+HOMEPAGE_VAR_KVM_1_URL=
+HOMEPAGE_VAR_KVM_2_URL=
+HOMEPAGE_VAR_KVM_3_URL=
+HOMEPAGE_VAR_KVM_4_URL=
+HOMEPAGE_VAR_KVM_5_URL=
+HOMEPAGE_VAR_KVM_6_URL=
+HOMEPAGE_VAR_IPMI_1_URL=
+HOMEPAGE_VAR_IPMI_2_URL=
+HOMEPAGE_VAR_IPMI_1_HOST=
+HOMEPAGE_VAR_IPMI_2_HOST=
+HOMEPAGE_VAR_NETBOOT_URL=
+HOMEPAGE_VAR_CODE_SERVER_URL=
+HOMEPAGE_VAR_BROADLINK_CONTROL_URL=
+
+# Storage
+HOMEPAGE_VAR_TRUENAS_URL=
+HOMEPAGE_VAR_TRUENAS_API_KEY=
+HOMEPAGE_VAR_TRUENAS_HOST=
+HOMEPAGE_VAR_MINIO_URL=
+HOMEPAGE_VAR_RACKULA_URL=
+HOMEPAGE_VAR_UNAS_URL=
+
+# Media
+HOMEPAGE_VAR_PLEX_URL=
+HOMEPAGE_VAR_PLEX_API_TOKEN=
+HOMEPAGE_VAR_TAUTULLI_URL=
+HOMEPAGE_VAR_TAUTULLI_API_KEY=
+HOMEPAGE_VAR_IMMICH_URL=
+HOMEPAGE_VAR_IMMICH_API_KEY=
+HOMEPAGE_VAR_DISPATCHARR_URL=
+HOMEPAGE_VAR_ERSATZTV_URL=
+HOMEPAGE_VAR_HANDBRAKE_URL=
+HOMEPAGE_VAR_HDHOMERUN_URL=
+HOMEPAGE_VAR_HDHOMERUN_HOST=
+
+# Energy
+HOMEPAGE_VAR_PEANUT_URL=
+HOMEPAGE_VAR_NUT_SERVER_HOST=
+HOMEPAGE_VAR_UPS_1_URL=
+HOMEPAGE_VAR_UPS_2_URL=
+HOMEPAGE_VAR_UPS_1_HOST=
+HOMEPAGE_VAR_UPS_2_HOST=
+HOMEPAGE_VAR_TRIPP_LITE_ICON_URL=
+HOMEPAGE_VAR_EATON_ICON_URL=
+
+# Home Automation
+HOMEPAGE_VAR_HOME_ASSISTANT_URL=
+HOMEPAGE_VAR_HOME_ASSISTANT_API_KEY=
+HOMEPAGE_VAR_SCRYPTED_URL=
+HOMEPAGE_VAR_ZIGBEE2MQTT_URL=
+HOMEPAGE_VAR_SLZB06M_URL=
+
+# AI
+HOMEPAGE_VAR_OPEN_WEBUI_URL=
+HOMEPAGE_VAR_N8N_URL=
+HOMEPAGE_VAR_N8N_API_KEY=
+
+# Documents
+HOMEPAGE_VAR_PAPERLESS_URL=
+HOMEPAGE_VAR_PAPERLESS_API_KEY=
+HOMEPAGE_VAR_PAPERLESS_AI_URL=
+HOMEPAGE_VAR_STIRLING_URL=
+
+# Tools
+HOMEPAGE_VAR_IT_TOOLS_URL=
+HOMEPAGE_VAR_SEARXNG_URL=
+HOMEPAGE_VAR_POSTIZ_URL=
+HOMEPAGE_VAR_BAMBUSTUDIO_URL=
+HOMEPAGE_VAR_BAMBUSTUDIO_ICON_URL=
+
+# Database
+HOMEPAGE_VAR_PGADMIN_URL=
+HOMEPAGE_VAR_PHPMYADMIN_URL=
+HOMEPAGE_VAR_DBGATE_URL=
+HOMEPAGE_VAR_DBGATE_ICON_URL=
+HOMEPAGE_VAR_ADMINER_URL=
+HOMEPAGE_VAR_DATABASUS_URL=
+
+# Other
+HOMEPAGE_VAR_GITLAB_URL=
+HOMEPAGE_VAR_GITHUB_URL=
+HOMEPAGE_VAR_SHLINK_URL=
+```
+
+{% endraw %}
+
 ### [LittleLinkServer](https://github.com/timothystewart6/littlelink-server)
 
 I also still use Little Link Server for all of my social links. It is simple, easy to configure, and does exactly what I need it to do.
