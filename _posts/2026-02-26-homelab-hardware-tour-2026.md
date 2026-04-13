@@ -394,6 +394,12 @@ I’ve also got another video coming that walks through the services running on 
 
 ---
 
+## Join the conversation
+
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">My homelab has changed again… 2026.<br>Full rack tour + upgrades: network, compute, storage, and power.<br>Video: <a href="https://t.co/lcq0qhznIh">https://t.co/lcq0qhznIh</a><br>Chapters are in the description. <a href="https://t.co/P5J9jrasWQ">pic.twitter.com/P5J9jrasWQ</a></p>&mdash; Techno Tim (@TechnoTimLive) <a href="https://twitter.com/TechnoTimLive/status/2025999317211746558?ref_src=twsrc%5Etfw">February 23, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
 🤝 Support the channel and [help keep this site ad-free](/sponsor)
 
 🛍️ Check out all merch: <https://shop.technotim.com/>

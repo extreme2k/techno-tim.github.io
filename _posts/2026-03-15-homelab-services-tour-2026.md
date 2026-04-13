@@ -1062,6 +1062,12 @@ If there is one self-hosted service you absolutely cannot live without, I would 
 
 ---
 
+## Join the conversation
+
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Everything I’m self-hosting in 2026 is live. Full breakdown from Proxmox + TrueNAS + K8S and all the way up through the apps. <br><br>What are you hosting right now?<a href="https://t.co/xz1j7uhyIb">https://t.co/xz1j7uhyIb</a> <a href="https://t.co/GnSH2oaMK3">pic.twitter.com/GnSH2oaMK3</a></p>&mdash; Techno Tim (@TechnoTimLive) <a href="https://twitter.com/TechnoTimLive/status/2033208916507513044?ref_src=twsrc%5Etfw">March 15, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
 🤝 Support the channel and [help keep this site ad-free](/sponsor)
 
 🛍️ Check out all merch: <https://shop.technotim.com/>

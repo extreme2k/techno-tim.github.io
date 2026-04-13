@@ -161,6 +161,12 @@ If you’re considering a small, low power NAS, the ME Pro stands out because it
 
 ---
 
+## Join the conversation
+
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">This little NAS is kinda stacked. 5GbE, NVMe, quiet, low power, comes with NVMe drive and 12GB DDR. <a href="https://t.co/fBBqOgaK5W">https://t.co/fBBqOgaK5W</a></p>&mdash; Techno Tim (@TechnoTimLive) <a href="https://twitter.com/TechnoTimLive/status/2020892229850517657?ref_src=twsrc%5Etfw">February 9, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
 🤝 Support the channel and [help keep this site ad-free](/sponsor)
 
 🛍️ Check out all merch: <https://shop.technotim.com/>

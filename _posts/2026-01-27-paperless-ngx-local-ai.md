@@ -478,6 +478,12 @@ With this you now have:
 
 ---
 
+## Join the conversation
+
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Self-hosting just keeps getting better! I finally took the time to set up PaperlessNGX. Local AI really took it to the next level with improved OCR. <a href="https://t.co/STQr6UgglH">https://t.co/STQr6UgglH</a></p>&mdash; Techno Tim (@TechnoTimLive) <a href="https://twitter.com/TechnoTimLive/status/2016176838398132410?ref_src=twsrc%5Etfw">January 27, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
 🤝 Support the channel and [help keep this site ad-free](/sponsor)
 
 🛍️ Check out all merch: [https://shop.technotim.com/](https://shop.technotim.com/)
